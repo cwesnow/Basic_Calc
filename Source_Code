@@ -1,0 +1,179 @@
+using System;
+
+class Basic_Calc
+    {
+
+
+      public static void Main()
+          {
+              double userVal;
+              string userValString;
+              
+              //Taking user value, checking validity and either passing the value to operation method/asking for new value if the one given isn't a number.
+              Console.WriteLine("Welcome to Sean's calculator, please input a value to begin:");
+              userValString = Console.ReadLine();
+              if(double.TryParse(userValString, out userVal))
+                  {
+                      operation(userVal);
+                  }
+              else
+                  {
+                      Console.WriteLine("Invalid input, press enter to retry...");
+                      Console.ReadLine();
+                      Main();
+                  }
+          }
+          
+
+
+      public static void operation(double userVal)
+          {
+            string userOperation;
+
+            //Taking user input, choosing which operation to perform, checking if the input is valid and calling the method that corresponds to the chosen operation/asking for new input if given is invalid.  
+            Console.WriteLine("Input either ADD/SUB/DIV/MULT to choose the operation you'd like to perform or QUIT to exit the program!");
+            
+            userOperation = Console.ReadLine();
+            userOperation = userOperation.ToUpper();
+            
+            if(userOperation == "ADD" || userOperation == "SUB" || userOperation == "DIV" || userOperation == "MULT" || userOperation == "QUIT")
+                {
+                    if(userOperation == "ADD")
+                        {
+                            add(userVal);             
+                        }
+                    else if(userOperation == "SUB")
+                        {
+                            sub(userVal);
+                        }
+                    else if(userOperation == "DIV")
+                        {
+                            div(userVal);
+                        }
+                    else if(userOperation == "MULT")
+                        {
+                            mult(userVal);
+                        }
+                    else
+                    {
+                        System.Environment.Exit(1);
+                    }
+                }
+            else
+                {
+                    Console.WriteLine("Ivalid input, press enter to retry...");
+                    Console.ReadLine();
+                    operation(userVal);
+                }
+            
+          }
+
+
+          
+          public static void add(double userVal)
+              {
+                  double addVal;
+                  string addValString;
+                  
+                  //Method taking the users previous value and adding an inputted value.
+                  Console.WriteLine("Please input a value to add to " + userVal + " :");
+                  addValString = Console.ReadLine();
+
+                  if(double.TryParse(addValString, out addVal))
+                  {
+                      userVal = addVal + userVal;
+                      Console.WriteLine("Your new value is " + userVal);
+                      operation(userVal);
+                  }
+                          
+                     
+                  else
+                  {
+                      Console.WriteLine("Invalid input press enter to retry...");
+                      Console.ReadLine();
+                      add(userVal);
+                  }
+                
+                          
+             }
+            
+              
+          public static void sub(double userVal)
+              {
+                  double subVal;
+                  string subValString;
+
+                  //Method taking the users previous value and subtracting an inputted value.
+                  Console.WriteLine("Please input a value to subtract from " + userVal + " :");
+                  subValString = Console.ReadLine();
+                  if(double.TryParse(subValString, out subVal))
+                  {
+                      userVal = userVal - subVal;
+                      Console.WriteLine("Your new value is " + userVal);
+                      operation(userVal);
+                  }
+
+
+
+                  else
+                  {
+                      Console.WriteLine("Invalid input press enter to retry...");
+                      Console.ReadLine();
+                      sub(userVal);
+                  }
+                      
+                           
+              }   
+                      
+
+
+              
+          public static void div(double userVal)
+              {
+                  double divVal;
+                  string divValString;
+
+                  //Method taking the users previous value and dividing by an inputted value.
+                  Console.WriteLine("Please input a value to divide " + userVal + " by:");
+                  divValString = Console.ReadLine();
+                  if(double.TryParse(divValString, out divVal))
+                      {
+                          userVal = userVal/divVal;
+                          Console.WriteLine("Your new value is " + userVal);
+                          operation(userVal);
+                      }
+                  else
+                      {
+                          Console.WriteLine("Invalid input press enter to retry...");
+                          Console.ReadLine();
+                          div(userVal);
+                      }
+              }
+
+
+              
+          public static void mult(double userVal)
+              {
+                  double multVal;
+                  string multValString;
+
+                  //Method taking the users previous value and multiplying by an inputted value.
+                  Console.WriteLine("Please input a value to multiply " + userVal + " by:");
+                  multValString = Console.ReadLine();
+                  if(double.TryParse(multValString, out multVal))
+                      {
+                          userVal = userVal * multVal;
+                          Console.WriteLine("Your new value is " + userVal);
+                          operation(userVal);
+                      }
+                  else
+                     {
+                         Console.WriteLine("Invalid input press enter to retry...");
+                         Console.ReadLine();
+                         mult(userVal);
+                     }
+                     
+              }
+
+
+    }
